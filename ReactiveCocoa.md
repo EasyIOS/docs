@@ -1,7 +1,7 @@
 
 为什么RAC更加适合编写Cocoa App？说这个之前，我们先来看下Web前端编程，因为有些相似之处。目前很火的AngularJS有一个很重要的特性：数据与视图绑定。就是当数据变化时，视图不需要额外的处理，便可正确地呈现最新的数据。而这也是RAC的亮点之一。RAC与Cocoa的编程模式，有点像AngularJS和jQuery。所以要了解RAC，需要先在观念上做调整。
 
-RAC进行数据绑定的例子：
+* 1.RAC进行数据绑定KVO的例子：
 
 		// When self.username changes, logs the new name to the console.
 		//
@@ -11,7 +11,22 @@ RAC进行数据绑定的例子：
 		[RACObserve(self, username) subscribeNext:^(NSString *newName) {
 		    NSLog(@"%@", newName);
 		}];
-当每次self.username改变，都会自动执行subscribeNext，NSLog内容到控制台
+当每次self.username改变，都会自动执行subscribeNext，打出内容到控制台
+
+* 2.RAC不仅仅是kvo，它还可以对信号进行过滤，筛选正确的信号，例如：
+
+		// Only logs names that starts with "j".
+		//
+		// -filter returns a new RACSignal that only sends a new value when its block
+		// returns YES.
+		[[RACObserve(self, username)
+		    filter:^(NSString *newName) {
+		        return [newName hasPrefix:@"j"];
+		    }]
+		    subscribeNext:^(NSString *newName) {
+		        NSLog(@"%@", newName);
+		    }];
+筛选前缀是j的username，打出到控制台
 
 ##Swift 与 Objective-C 中的使用区别:
 
