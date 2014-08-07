@@ -1,5 +1,8 @@
-##SceneModel Class Reference 
+#SceneModel Class Reference 
 
+SceneModel 负责数据的绑定，控制视图更新，网络请求的发起，以及Model的生成工作
+
+===
 
 ##Tasks
 
@@ -17,11 +20,15 @@
 
 * – initModel
 
+===
+
 ##Properties
 
 ###action 
 
 	@property (nonatomic, strong) Action *action
+
+===
 ##Class Methods
 
 ###SceneModel 
