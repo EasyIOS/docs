@@ -6,7 +6,7 @@
 		
 
 字体名称`fa_angle_down` 可以在demo字典中查找到：
-目前提供了4种图片字体下面是他妹的弘定义：
+目前提供了4种图片字体下面是他们的弘定义：
 
 	#define fontAwesome @"FontAwesome"
 	#define zocialRegularWebfont @"Zocial-Regular"
