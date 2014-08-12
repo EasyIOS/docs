@@ -12,4 +12,4 @@ Welcome to the EasyIOS wiki!
 
 ##Coding with Swift
  
-##FAQ
+##[FAQ](FAQ)
