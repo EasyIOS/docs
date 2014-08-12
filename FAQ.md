@@ -22,9 +22,9 @@
 * 但这个变量我好像没啥意义 只是为了触发才这么做？
 
 		是的！，ReactiveViewModel，也是这样的，它定义了一个叫active属性，只要active是yes就干活,这个变量easyios里面没有定义.
-		如果你实在是没有这个状态变量，就仿照reactiveviewmodel，定义一个active属性，每次修改成YES，执行完成后改成NO
+		如果你实在是没有这个状态变量，就仿照ReactiveViewModel，定义一个active属性，每次修改成YES，执行完成后改成NO 
 		
-[ReactiveViewModel](https://github.com/ReactiveCocoa/ReactiveViewModel )
+* [ReactiveViewModel项目地址](https://github.com/ReactiveCocoa/ReactiveViewModel)
 
 * `RAC(self.homeSceneModel.request,page) = RACObserve(self.tableView,page);`这个大概是啥意思 没看懂
 
