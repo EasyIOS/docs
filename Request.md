@@ -1,6 +1,6 @@
 #Request
 
-====
+---
 Request为初始化网络请求数据的类
 
 * ###GET
