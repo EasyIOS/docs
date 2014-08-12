@@ -5,6 +5,8 @@
 		* [Request](Request)
 	* [Model](Model)
 	* [ReactiveCocoa](ReactiveCocoa)
-	* [EasyKit](EasyKit)
-	* [IconFont](IconFont)
+	* Others
+		* [EasyKit](EasyKit)
+		* [IconFont](IconFont)
+		* [RTLabel](RTLabel)
 * [FAQ](FAQ)
