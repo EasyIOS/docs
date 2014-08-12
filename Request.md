@@ -67,7 +67,7 @@ Request为初始化网络请求数据的类
 		    NSString *localPath1 = [NSString stringWithFormat:@"%@/%@",$.documentPath,imageName1];
 		    
 		    NSString *imageName2 = @"face2.png";
-		    NSString *localPath2 = [NSString stringWithFormat:@"%@/%@",$.documentPath,imageName];
+		    NSString *localPath2 = [NSString stringWithFormat:@"%@/%@",$.documentPath,imageName2];
 		    
 		    return @{@"image1":localPath1,
 		    		 @"image2":localPath2};
