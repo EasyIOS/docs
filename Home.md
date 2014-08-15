@@ -11,6 +11,7 @@ Welcome to the EasyIOS wiki!
 		* [EasyKit](EasyKit)
 		* [IconFont](IconFont)
 		* [RTLabel](RTLabel)
+		* [FLKAutoLayout](FLKAutoLayout)
 * [FAQ](FAQ)
 
 ##Coding with Swift

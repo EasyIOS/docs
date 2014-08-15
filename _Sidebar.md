@@ -9,4 +9,5 @@
 		* [EasyKit](EasyKit)
 		* [IconFont](IconFont)
 		* [RTLabel](RTLabel)
+		* [FLKAutoLayout](FLKAutoLayout)
 * [FAQ](FAQ)
