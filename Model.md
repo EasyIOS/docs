@@ -1,4 +1,5 @@
 #一、Model的对象映射操作
+Model作为数据核心，功能不强大是不行的！
 ###Examples
 
 * a.你有可能有这样的 JSON:
@@ -165,10 +166,98 @@
 		// Log
 		person.firstName // => John
 		person.lastName // => Doe
+		
+##服务器有时候给了null
+
+* a.服务器有时候给了null
+
+		{
+		  "id": "123",
+		  "name": null,
+		  "price": 12.95
+		}
+	或者干脆不给了。
 	
+		{
+		  "id": "123",
+		  "price": 12.95
+		}
+		
+* b.你可以这样设置Optional
+
+		@interface ProductModel : JSONModel
+		@property (assign, nonatomic) int id;
+		@property (strong, nonatomic) NSString<Optional>* name;
+		@property (assign, nonatomic) float price;
+		@property (strong, nonatomic) NSNumber<Optional>* uuid;
+		@end
+		
+		@implementation ProductModel
+		@end
+* c.全部设为Optional
+
+		@implementation ProductModel
+		+(BOOL)propertyIsOptional:(NSString*)propertyName
+		{
+		  return YES;
+		}
+		@end
+
+		
+##服务器有时候给了用不到的	
+
+* a.服务器有时候给多了。
+
+		{
+		  "id": "123",
+		  "a": "123",
+		  "b": "123",
+		  "c": "123"
+		}
+		
+* b.你可以这样设置Ignore,来减少客户端工作量
+
+		@interface ProductModel : JSONModel
+		@property (assign, nonatomic) int id;
+		@property (strong, nonatomic) NSString<Ignore>* a;
+		@property (strong, nonatomic) NSString<Ignore>* b;
+		@property (strong, nonatomic) NSString<Ignore>* c;
+		@end
+		
+		@implementation ProductModel
+		@end
+
+
 ##如果你更懒一点.h都不想写。。。。
 
 * 这里有个[懒人工具ModelCoder](https://github.com/zhuchaowe/ModelCoder)
+
+##Using the built-in thin HTTP client
+
+	//add extra headers
+	[[JSONHTTPClient requestHeaders] setValue:@"MySecret" forKey:@"AuthorizationToken"];
+	
+	//make post, get requests
+	[JSONHTTPClient postJSONFromURLWithString:@"http://mydomain.com/api"
+	                                   params:@{@"postParam1":@"value1"}
+	                               completion:^(id json, JSONModelError *err) {
+	
+	                                   //check err, process json ...
+	
+	                               }];
+                               
+###Export model to NSDictionary or to JSON text
+
+	ProductModel* pm = [[ProductModel alloc] initWithString:jsonString error:nil];
+	pm.name = @"Changed Name";
+	
+	//convert to dictionary
+	NSDictionary* dict = [pm toDictionary];
+	
+	//convert to text
+	NSString* string = [pm toJSONString];
+
+
 
 #二、Model的DataDase数据库操作
 
