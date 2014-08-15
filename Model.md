@@ -19,8 +19,8 @@
 * c.利用Model的对象映射操作，就可以实现一键的转换：
 
 		// Some other code
-		NSDictionary *dictionary = /* 解析json为dictionary */;
-		Friend *friend = [[Friend alloc] initWithDictionary:dictionary];
+		NSString *json = /* json form net */;
+		Friend *friend = [[Friend alloc] initWithString:json error:&err];
 		
 		// Log
 		friend.name // => Foo
@@ -47,6 +47,7 @@
 
 		#import "Friend.h"
 		#import "FriendCategory.h"
+		
 		@interface Friend : Model
 		@property (nonatomic, retain) NSString *name;
 		@property (nonatomic, retain) FriendCategory *category;
@@ -55,8 +56,8 @@
 * d.同样可以一键转换
 
 		// Code
-		NSDictionary *dictionary = /* 解析json为dictionary */;
-		Friend *friend = [[Friend alloc] initWithDictionary:dictionary];
+		NSString *json = /* json form net */;
+		Friend *friend = [[Friend alloc] initWithString:json error:&err];
 		
 		// Log
 		friend.name // => Foo
@@ -80,24 +81,21 @@
 
 		#import "Friend.h"
 		#import "FriendCategory.h"
+		
+		@protocol FriendCategory
+		@end
+		
 		@interface Friend : Model
 		@property (nonatomic, copy) NSString *name;
-		@property (nonatomic, retain) NSArray *categories;
+		@property (nonatomic, retain) NSArray<FriendCategory> *categories;
 		@end
 		
-		// Friend.m
-		@implementation Friend
-		
-		+ (Class)categories_class {
-		    return [FriendCategory class];
-		}
-		@end
 
 * c.同样可以一键转换
  
 		// Code
-		NSDictionary *dictionary = /* 解析json为dictionary */;
-		Friend *friend = [[Friend alloc] initWithDictionary:dictionary];
+		NSString *json = /* json form net */;
+		Friend *friend = [[Friend alloc] initWithString:json error:&err];
 		
 		// Log
 		friend.name // => Foo
@@ -105,13 +103,7 @@
 		[friend.categories count] // => 3
 		[friend.categories objectAtIndex:1] // => <ProductCategory>
 		[[friend.categories objectAtIndex:1] name] // => Bar Category 2
-		
-* d.注意点
 
-		+ (Class)categories_class {
-		    return [ProductCategory class];
-		}	
-	它可以告诉Model，categories数组里的成员是ProductCategory类
 	
 ##然后你就可以乱来了。。。
 
@@ -146,7 +138,7 @@
 * b.你可以这样
 
 		// Person.h
-		@interface Person : Jastor
+		@interface Person : Model
 		@property (nonatomic, copy) NSString *firstName;
 		@property (nonatomic, copy) NSString *lastName;
 		@end
@@ -154,11 +146,12 @@
 		// Person.m
 		@implementation Person
 		
-		- (NSDictionary *)map{
-		    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[super map]];
-		    [map setObject:@"first_name" forKey:@"firstName"];
-		    [map setObject:@"last_name" forKey:@"lastName"];
-		    return [NSDictionary dictionaryWithDictionary:map];
+		+(JSONKeyMapper*)keyMapper
+		{
+		  return [[JSONKeyMapper alloc] initWithDictionary:@{
+		    @"user.first_name": @"firstName",
+		    @"user.last_name": @"lastName"
+		  }];
 		}
 		
 		@end
@@ -173,6 +166,10 @@
 		person.firstName // => John
 		person.lastName // => Doe
 	
+##如果你更懒一点.h都不想写。。。。
+
+* 这里有个[懒人工具ModelCoder](https://github.com/zhuchaowe/ModelCoder)
+
 #二、Model的DataDase数据库操作
 
 ##1.创建一个数据库并连接

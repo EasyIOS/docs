@@ -32,4 +32,15 @@ Welcome to the EasyIOS wiki!
 ##Best Wishes
 如果你觉得EasyIOS好，并且在某个项目里成功地使用了它，请分享您的app到这里，供大家参考学习，一起见证EasyIOS的成长。Thanks!
 
+##Tool Collection
+
+* [SwipeView](https://github.com/nicklockwood/SwipeView) 
+
+	Horizontal, paged scrolling views based on UIScrollView, with convenient
+   functionality in UITableView-style.
+   
+* [StyledPageControl](https://github.com/honcheng/iOS-StyledPageControl)
+
+	Customizable PageControl for iOS.
+
 
