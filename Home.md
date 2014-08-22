@@ -1,17 +1,19 @@
 Welcome to the EasyIOS wiki!
 ##EasyIOS 教程入口
 * [Home](Home)
-	* [Scene](Scene)
-	* [SceneModel](SceneModel)
-		* [Action](Action)
-		* [Request](Request)
-	* [Model](Model)
-	* [ReactiveCocoa](ReactiveCocoa)
+	* [Scene](Scene)(1.0)
+	* [SceneModel](SceneModel)(2.0)
+		* [Action](Action)(1.0)
+		* [Request](Request)(2.0)
+	* [Model](Model)(1.0)
+	* [ReactiveCocoa](ReactiveCocoa)(2.0)
 	* Others
-		* [EasyKit](EasyKit)
-		* [IconFont](IconFont)
-		* [RTLabel](RTLabel)
-		* [FLKAutoLayout](FLKAutoLayout)
+		* [EasyKit](EasyKit)(2.0.1)
+		* [IconFont](IconFont)(1.0.3)
+		* [RTLabel](RTLabel)(1.0)
+		* [RegExCategories](RegExCategories)(2.0.2)
+		* [TMCache](TMCache)(2.0.2)
+		* [GCDObjC](GCDObjC)(2.0.2)
 * [FAQ](FAQ)
 
 ##Coding with Swift
