@@ -12,4 +12,5 @@
 		* [RegExCategories](RegExCategories)(2.0.2)
 		* [TMCache](TMCache)(2.0.2)
 		* [GCDObjC](GCDObjC)(2.0.2)
+		* [UICKeyChainStore](UICKeyChainStore)(1.0)
 * [FAQ](FAQ)
