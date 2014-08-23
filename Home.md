@@ -46,5 +46,7 @@ Welcome to the EasyIOS wiki!
 * [StyledPageControl](https://github.com/honcheng/iOS-StyledPageControl)
 
 	Customizable PageControl for iOS.
-
+* [synx](https://github.com/venmo/synx)
+	
+	A command-line tool that reorganizes your Xcode project folder to match your Xcode groups
 
