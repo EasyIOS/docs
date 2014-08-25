@@ -292,11 +292,7 @@ Model作为数据核心，功能不强大是不行的！
 
 ##2.创建一个数据模型
 
-* (1).每一个数据模型都需要在数据库里面有对应的数据表，因此你需要在 `AppDatabase`的子类中创建对应的数据表：
-
-		-(void)createFriendTable {
-			 [self executeSql:@"CREATE TABLE Friend (primaryKey INTEGER primary key autoincrement, name TEXT, age INTEGER)"];
-		}
+* (1).每一个数据模型都需要在数据库里面有对应的数据表，数据表当你需要用到数据库的时候model会自动创建
 
 * (2).你还需要有一个和数据表名称一致的数据模型Model的子类Friend：
 
