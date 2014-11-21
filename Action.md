@@ -3,6 +3,15 @@
 Action 负责网络请求的发起，设置请求的成功、失败和错误的状态及对应的回调方法
 
 
+初始化：
+
+	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	    [Action actionConfigHost:@"maichong.08dream.com" client:@"easyIOS" codeKey:@"code" rightCode:0 msgKey:@"msg"];
+	 }
+    
+    
+
+
 ===
 
 ##Tasks

@@ -13,4 +13,5 @@
 		* [TMCache](TMCache)(2.0.2)
 		* [GCDObjC](GCDObjC)(2.0.2)
 		* [UICKeyChainStore](UICKeyChainStore)(1.0)
+		* [Pulltorefresh+Infinitescrolling](pulltorefresh+infinitescrolling)(2.2)
 * [FAQ](FAQ)

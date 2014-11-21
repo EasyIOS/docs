@@ -9,7 +9,6 @@ Scene 继承UIViewController，EasyIOS里面仅仅负责视图的展示工作。
 
   parentScene `property`
   
-* – handlePullLoader:state:
 * – showBarButton:title:fontColor:
 * – showBarButton:imageName:
 * – showBarButton:button:
@@ -30,20 +29,7 @@ Scene 继承UIViewController，EasyIOS里面仅仅负责视图的展示工作。
 ===
 ##Instance Methods
 
-###handlePullLoader:state: 
 
-	- (void)handlePullLoader:(MJRefreshBaseView *)view state:(NSInteger)state
-	
-
-这是下拉刷新和上拉加载模块的代理方法。需要在继承Scene类的- (void)viewDidLoad里面添加以下代码
-
-    self.collectionView.SceneDelegate = self; //需要下拉刷新或者上拉加载需要设置代理
-    self.collectionView.backgroundColor = [UIColor whiteColor];
-    [self.collectionView addHeader];   //添加下拉刷新
-    [self.collectionView addFooter];   //添加上拉加载
-    [self.collectionView initPage]; //多页数据初始化分页
-    
-Scene子类需要实现handlePullLoader:state:方法进行对page的改变。
 ###leftButtonTouch 
 
 	- (void)leftButtonTouch
