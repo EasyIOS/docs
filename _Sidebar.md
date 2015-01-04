@@ -8,7 +8,6 @@
 	* Others
 		* [EasyKit](EasyKit)(2.0.1)
 		* [IconFont](IconFont)(1.0.3)
-		* [RTLabel](RTLabel)(1.0)
 		* [RegExCategories](RegExCategories)(2.0.2)
 		* [TMCache](TMCache)(2.0.2)
 		* [GCDObjC](GCDObjC)(2.0.2)
