@@ -24,7 +24,7 @@ IOS8中,`UITableView`有了self sizing cells 这样一个功能来解决动态Ce
     self.tableView.estimatedRowHeight = 250.0f; 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 ```
-`estimatedRowHeight`如果不设置tabelView会去调用`heightForRowAtIndexPath`,所以为了减轻渲染的负担，我们这个提供一个大致的值。(应该也是苹果团队的一种补救措施)。
+`estimatedRowHeight`如果不设置tabelView会去调用`heightForRowAtIndexPath`,所以为了减轻渲染的负担，我们在这里提供一个大致的值。(应该也是苹果团队的一种补救措施)。
 *  实现`UITableViewDataSource`
 
 ```
