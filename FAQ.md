@@ -1,4 +1,4 @@
-* scenmode是怎么出发request 调用action的呢?demo里是scene观察tableview的page 
+* Scenmode是怎么出发request 调用action的呢?demo里是scene观察tableview的page 
 	
 		scenemodel有一个成员属性叫action，scenemodel会把你的request提交给action,观察page是因为有个分页
 * 触发的时机呢

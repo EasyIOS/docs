@@ -7,6 +7,7 @@ Welcome to the EasyIOS wiki!
 		* [Request](Request)(2.0)
 	* [Model](Model)(1.0)
 	* [ReactiveCocoa](ReactiveCocoa)(2.0)
+	* [AutoLayoutCell](AutoLayoutCell)(2.2.1)
 	* Others
 		* [EasyKit](EasyKit)(2.0.1)
 		* [IconFont](IconFont)(1.0.3)

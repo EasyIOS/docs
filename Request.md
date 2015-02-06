@@ -5,7 +5,7 @@ Request为初始化网络请求数据的类
 
 * ###GET
 
-	如果你想发这样一个GET请求
+如果你想发这样一个GET请求
 `http://test-leway.zjseek.com.cn:8000/api/goods/goodsList?type=1&pageSize=10&page=1&categoryId=-1&areaName=浙江`
 
 	你可以这样定义一个GoodsListRequest
@@ -76,3 +76,8 @@ Request为初始化网络请求数据的类
 	
 	requestFiles方法里面返回一个文件字典。EasyIOS会自动进行识别上传
 	
+* ###激活请求
+	如果你想快速的激活一个Request
+
+		
+		self.sceneModel.request.requestNeedActive = YES;
