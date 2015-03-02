@@ -34,6 +34,7 @@ Welcome to the EasyIOS wiki!
 
 * [iOS Framework: Introducing MKNetworkKit (MKNetworkKit介绍，入门，翻译)](http://swift.08dream.com/index.php?s=/Home/Article/detail/id/10038.html)
 
+* [Swift语言主流学习资源](https://github.com/ipader/SwiftGuide)
 ##Best Wishes
 如果你觉得EasyIOS好，并且在某个项目里成功地使用了它，请分享您的app到这里，供大家参考学习，一起见证EasyIOS的成长。Thanks!
 
