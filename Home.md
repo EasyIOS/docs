@@ -22,7 +22,11 @@ Welcome to the EasyIOS wiki!
 
 * [RACSwift](https://github.com/zhuchaowe/RACSwift)
  
-##Other Link
+## 基于EasyIOS的上线应用
+* [脉冲书志](https://itunes.apple.com/cn/app/mai-chong-shu-zhi-qing-chun/id952186104)
+* [兼职达人](https://itunes.apple.com/cn/app/jian-zhi-da-ren/id968221528)
+
+## Other Link
 
 * [花瓣网李忠：ReactiveCocoa是Cocoa的未来](http://swift.08dream.com/index.php?s=/Home/Article/detail/id/10037.html)
 
