@@ -7,6 +7,7 @@
 	* [ReactiveCocoa](ReactiveCocoa)(2.0)
 	* [AutoLayoutCell](AutoLayoutCell)(2.2.1)
 	* [Pulltorefresh](pulltorefresh+infinitescrolling)(2.2)
+	* [AutoLayout-UIScrollView](AutoLayout-UIScrollView)(2.2.3)
 	* Others
 		* [EasyKit](EasyKit)(2.0.1)
 		* [IconFont](IconFont)(1.0.3)
