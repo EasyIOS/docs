@@ -8,6 +8,7 @@ Welcome to the EasyIOS wiki!
 	* [Model](Model)(1.0)
 	* [ReactiveCocoa](ReactiveCocoa)(2.0)
 	* [AutoLayoutCell](AutoLayoutCell)(2.2.1)
+	* [Pulltorefresh](pulltorefresh+infinitescrolling)(2.2)
 	* Others
 		* [EasyKit](EasyKit)(2.0.1)
 		* [IconFont](IconFont)(1.0.3)
@@ -15,7 +16,6 @@ Welcome to the EasyIOS wiki!
 		* [TMCache](TMCache)(2.0.2)
 		* [GCDObjC](GCDObjC)(2.0.2)
 		* [UICKeyChainStore](UICKeyChainStore)(1.0)
-		* [Pulltorefresh](pulltorefresh+infinitescrolling)(2.2)
 * [FAQ](FAQ)
 
 ##Coding with Swift
