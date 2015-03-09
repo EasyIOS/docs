@@ -3,7 +3,7 @@
 ---
 Request为初始化网络请求数据的类
 
-* ###GET
+### GET
 
 如果你想发这样一个GET请求
 `http://test-leway.zjseek.com.cn:8000/api/goods/goodsList?type=1&pageSize=10&page=1&categoryId=-1&areaName=浙江`
@@ -39,7 +39,7 @@ Request为初始化网络请求数据的类
 		
 	loadRequest方法里面初始化HOST，PATH，METHOD以及各种变量。EasyIOS会自动进行拼接为`http://test-leway.zjseek.com.cn:8000/api/goods/goodsList?type=1&pageSize=10&page=1&categoryId=-1&areaName=浙江`
 	
-* ###POST
+### POST
 	如果你想POST文件
 	你可以这样定义一个ImagePostRequest
 	
@@ -69,7 +69,7 @@ Request为初始化网络请求数据的类
 	
 	requestFiles方法里面返回一个文件字典。EasyIOS会自动进行识别上传
 	
-* ###激活请求
+### 激活请求
 	如果你想快速的激活一个Request
 
 		
