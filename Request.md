@@ -60,17 +60,8 @@ Request为初始化网络请求数据的类
 		    self.PATH = @"/api/goods/goodsList";
 		    self.METHOD = @"POST"; //设置为post
 		    self.name = @"图片";
-		}
-		
-		-(NSDictionary *)requestFiles{
-		    NSString *imageName1 = @"face1.png";
-		    NSString *localPath1 = [NSString stringWithFormat:@"%@/%@",$.documentPath,imageName1];
-		    
-		    NSString *imageName2 = @"face2.png";
-		    NSString *localPath2 = [NSString stringWithFormat:@"%@/%@",$.documentPath,imageName2];
-		    
-		    return @{@"image1":localPath1,
-		    		 @"image2":localPath2};
+		    NSString *localPath = [NSString stringWithFormat:@"%@/%@",$.documentPath,@"face1.png"];
+		    self.requestFiles = @{@"image":[NSURL fileURLWithPath:localPath]};
 		}
 		@end
 	
