@@ -75,3 +75,32 @@ Request为初始化网络请求数据的类
 		
 		self.sceneModel.request.requestNeedActive = YES;
 		
+### 一个在SceneModel中使用的例子
+
+```
+-(void)loadSceneModel{
+    [super loadSceneModel];
+    [self.action useCache];
+    self.userData = nil;
+    
+    @weakify(self);
+    _request = [UserRequest RequestWithBlock:^{
+        @strongify(self);
+        if(self.request.userId.isNotEmpty){
+            [self SEND_IQ_ACTION:self.request];
+        }
+    }];
+    
+    [[RACObserve(self.request, state) //监控 网络请求的状态
+      filter:^BOOL(NSNumber *state) {
+          @strongify(self);
+          return self.request.succeed;
+      }]
+     subscribeNext:^(NSNumber *state) {
+         @strongify(self);
+         NSError *error;
+         self.userData = [[UserEntity alloc] initWithDictionary:[self.request.output objectForKey:@"data"] error:&error];//Model的ORM操作，dictionary to object
+     }];
+}
+```
+		
