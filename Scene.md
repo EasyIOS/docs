@@ -29,7 +29,6 @@ Scene 继承UIViewController，EasyIOS里面仅仅负责视图的展示工作。
 ===
 ##Instance Methods
 
-
 ###leftButtonTouch 
 
 	- (void)leftButtonTouch
