@@ -21,6 +21,7 @@ Get them back out like this:
                               }];
 ```
                                   
+                                  
 `TMMemoryCache` allows for concurrent reads and serialized writes, while `TMDiskCache` serializes disk access across all instances in the app to increase performance and prevent file contention. `TMCache` coordinates them so that objects added to memory are available immediately to other threads while being written to disk safely in the background. Both caches are public properties of `TMCache`, so it's easy to manipulate one or the other separately if necessary.
 
 Collections work too. Thanks to the magic of `NSKeyedArchiver`, objects repeated in a collection only occupy the space of one on disk:
