@@ -1,5 +1,5 @@
 Welcome to the EasyIOS wiki!
-## [EasyIOS 教程入口](http://zhuchaowe.gitbooks.io/easyios/content/)
+## [EasyIOS 教程入口](http://easyios.iosx.me)
 
 ##Coding with Swift
 
