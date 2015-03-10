@@ -7,7 +7,7 @@
 	* [Model](Model.md)(1.0)
 	* [ReactiveCocoa](ReactiveCocoa.md)(2.0)
 	* [AutoLayoutCell](AutoLayoutCell.md)(2.2.1)
-	* [Pulltorefresh](pulltorefresh+infinitescrolling.md)(2.2)
+	* [Pulltorefresh](pulltorefresh-infinitescrolling.md)(2.2)
 	* [AutoLayout-UIScrollView](AutoLayout-UIScrollView.md)(2.2.3)
 	* [URLManager](URLManager.md)(2.2.3)
 	* Others
