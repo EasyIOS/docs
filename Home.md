@@ -1,26 +1,5 @@
 Welcome to the EasyIOS wiki!
-##EasyIOS 教程入口
-* [Home](Home)
-	* [Scene](Scene.md)(1.0)
-	* [SceneModel](SceneModel.md)(2.0)
-		* [Action](Action.md)(1.0)
-		* [Request](Request.md)(2.0)
-	* [Model](Model.md)(1.0)
-	* [ReactiveCocoa](ReactiveCocoa.md)(2.0)
-	* [AutoLayoutCell](AutoLayoutCell.md)(2.2.1)
-	* [Pulltorefresh](pulltorefresh+infinitescrolling.md)(2.2)
-	* [AutoLayout-UIScrollView](AutoLayout-UIScrollView.md)(2.2.3)
-	* [URLManager](URLManager.md)(2.2.3)
-	* Others
-		* [EasyKit](EasyKit.md)(2.0.1)
-		* [IconFont](IconFont.md)(1.0.3)
-		* [RegExCategories](RegExCategories.md)(2.0.2)
-		* [TMCache](TMCache.md)(2.0.2)
-		* [GCDObjC](GCDObjC.md)(2.0.2)
-		* [FLKAutoLayout](FLKAutoLayout.md)(2.0)
-		* [UICKeyChainStore](UICKeyChainStore.md)(1.0)
-		* [Crontab-IOS](Crontab-IOS.md)(2.2.3)
-* [FAQ](FAQ.md)
+## [EasyIOS 教程入口](http://zhuchaowe.gitbooks.io/easyios/content/)
 
 ##Coding with Swift
 
