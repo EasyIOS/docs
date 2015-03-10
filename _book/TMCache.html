@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>TMCache | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./GCDObjC.html" />
     
     
-
-    
+    <link rel="prev" href="./RegExCategories.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.4" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -306,7 +306,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.9.4" data-path="TMCache.html">
+        <li class="chapter active" data-level="1.9.4" data-path="TMCache.html">
             
                 
                     <a href="./TMCache.html">
@@ -499,13 +499,62 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_20">
+                    
+                        <h1 id="tmcache">TMCache</h1>
+<h2 id="fast-parallel-object-cache-for-ios-and-os-x">Fast parallel object cache for iOS and OS X.</h2>
+<p><a href="TMCache/TMCache.h">TMCache</a> is a key/value store designed for persisting temporary objects that are expensive to reproduce, such as downloaded data or the results of slow processing. It is comprised of two self-similar stores, one in memory (<a href="TMCache/TMMemoryCache.h">TMMemoryCache</a>) and one on disk (<a href="TMCache/TMDiskCache.h">TMDiskCache</a>), all backed by GCD and safe to access from multiple threads simultaneously. On iOS, <code>TMMemoryCache</code> will clear itself when the app receives a memory warning or goes into the background. Objects stored in <code>TMDiskCache</code> remain until you trim the cache yourself, either manually or by setting a byte or age limit.</p>
+<p><code>TMCache</code> and <code>TMDiskCache</code> accept any object conforming to <a href="https://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Protocols/NSCoding_Protocol/Reference/Reference.html" target="_blank">NSCoding</a>. Put things in like this:</p>
+<pre><code class="lang-objective-c">UIImage *img = [[UIImage alloc] initWithData:data scale:[[UIScreen mainScreen] scale]];
+[[TMCache sharedCache] setObject:img forKey:@&quot;image&quot; block:nil]; // returns immediately
+</code></pre>
+<p>Get them back out like this:</p>
+<pre><code class="lang-objective-c">[[TMCache sharedCache] objectForKey:@&quot;image&quot;
+                              block:^(TMCache *cache, NSString *key, id object) {
+                                  UIImage *image = (UIImage *)object;
+                                  NSLog(@&quot;image scale: %f&quot;, image.scale);
+                              }];
+</code></pre>
+<p><code>TMMemoryCache</code> allows for concurrent reads and serialized writes, while <code>TMDiskCache</code> serializes disk access across all instances in the app to increase performance and prevent file contention. <code>TMCache</code> coordinates them so that objects added to memory are available immediately to other threads while being written to disk safely in the background. Both caches are public properties of <code>TMCache</code>, so it&#39;s easy to manipulate one or the other separately if necessary.</p>
+<p>Collections work too. Thanks to the magic of <code>NSKeyedArchiver</code>, objects repeated in a collection only occupy the space of one on disk:</p>
+<pre><code class="lang-objective-c">NSArray *images = @[ image, image, image ];
+[[TMCache sharedCache] setObject:images forKey:@&quot;images&quot;];
+NSLog(@&quot;3 for the price of 1: %d&quot;, [[[TMCache sharedCache] diskCache] byteCount]);
+</code></pre>
+<h2 id="installation">Installation</h2>
+<h3 id="manually">Manually</h3>
+<p><a href="https://github.com/tumblr/TMCache/tags" target="_blank">Download the latest tag</a> and drag the <code>TMCache</code> folder into your Xcode project.</p>
+<p>Install the docs by double clicking the <code>.docset</code> file under <code>docs/</code>, or view them online at <a href="http://cocoadocs.org/docsets/TMCache/" target="_blank">cocoadocs.org</a></p>
+<h3 id="git-submodule">Git Submodule</h3>
+<pre><code>git submodule add https://github.com/tumblr/TMCache.git
+git submodule update --init
+</code></pre><h3 id="cocoapods">CocoaPods</h3>
+<p>Add <a href="http://cocoapods.org/?q=name%3ATMCache" target="_blank">TMCache</a> to your <code>Podfile</code> and run <code>pod install</code>.</p>
+<h2 id="build-status">Build Status</h2>
+<p><a href="https://travis-ci.org/tumblr/TMCache" target="_blank"><img src="https://travis-ci.org/tumblr/TMCache.png?branch=master" alt="Build Status"></a></p>
+<h2 id="requirements">Requirements</h2>
+<p><strong>TMCache</strong> requires iOS 5.0 or OS X 10.7 and greater.</p>
+<h2 id="contact">Contact</h2>
+<p><a href="mailto:jstn@tumblr.com" target="_blank">Justin Ouellette</a></p>
+<h2 id="license">License</h2>
+<p>Copyright 2013 Tumblr, Inc.</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. <a href="LICENSE.txt">See the License</a> for the specific language governing permissions and limitations under the License.</p>
 
-
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./RegExCategories.html" class="navigation navigation-prev " aria-label="Previous page: RegExCategories"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./GCDObjC.html" class="navigation navigation-next " aria-label="Next page: GCDObjC"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

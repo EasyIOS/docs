@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>Request | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./Model.html" />
     
     
-
-    
+    <link rel="prev" href="./Action.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.2.2" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -132,7 +132,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.2.2" data-path="Request.html">
+        <li class="chapter active" data-level="1.2.2" data-path="Request.html">
             
                 
                     <a href="./Request.html">
@@ -499,13 +499,118 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_16">
+                    
+                        <h1 id="request">Request</h1>
+<hr>
+<p>Request为初始化网络请求数据的类</p>
+<h3 id="get">GET</h3>
+<p>如果你想发这样一个GET请求
+<code>http://test-leway.zjseek.com.cn:8000/api/goods/goodsList?type=1&amp;pageSize=10&amp;page=1&amp;categoryId=-1&amp;areaName=浙江</code></p>
+<pre><code>你可以这样定义一个GoodsListRequest
+
+    #import &quot;Request.h&quot;
+    @interface GoodsListRequest : Request
+    @property(nonatomic,retain) NSString *type;
+    @property(nonatomic,retain) NSNumber *page;
+    @property(nonatomic,retain) NSNumber *pageSize;
+    @property(nonatomic,retain) NSString *categoryId;
+    @property(nonatomic,retain) NSString *areaName;
+    @end
 
 
+    #import &quot;GoodsListRequest.h&quot;
+    @implementation GoodsListRequest
+    /**
+     *  初始化 GoodsListRequest 的参数
+     */
+    -(void)loadRequest{
+        [super loadRequest];
+        //self.HOST = @&quot;test-leway.zjseek.com.cn:8000&quot;; 不设置host 就采用宏定义的全局host
+        self.PATH = @&quot;/api/goods/goodsList&quot;;
+        self.METHOD = @&quot;GET&quot;;
+        self.type = @&quot;1&quot;;
+        self.categoryId = @&quot;-1&quot;;
+        self.areaName = @&quot;浙江&quot;;
+        self.pageSize = @10;
+    }
+    @end
+
+loadRequest方法里面初始化HOST，PATH，METHOD以及各种变量。EasyIOS会自动进行拼接为`http://test-leway.zjseek.com.cn:8000/api/goods/goodsList?type=1&amp;pageSize=10&amp;page=1&amp;categoryId=-1&amp;areaName=浙江`
+</code></pre><h3 id="post">POST</h3>
+<pre><code>如果你想POST文件
+你可以这样定义一个ImagePostRequest
+
+    #import &quot;Request.h&quot;
+    @interface ImagePostRequest : Request
+    @property(nonatomic,retain) NSString *name;
+    @end
+
+
+    #import &quot;ImagePostRequest.h&quot;
+    @implementation ImagePostRequest
+    /**
+     *  初始化 GoodsListRequest 的参数
+     */
+    -(void)loadRequest{
+        [super loadRequest];
+        //self.HOST = @&quot;test-leway.zjseek.com.cn:8000&quot;; 不设置host 就采用宏定义的全局host
+        self.PATH = @&quot;/api/goods/goodsList&quot;;
+        self.METHOD = @&quot;POST&quot;; //设置为post
+        self.name = @&quot;图片&quot;;
+        NSString *localPath1 = [NSString stringWithFormat:@&quot;%@/%@&quot;,$.documentPath,@&quot;face1.png&quot;];
+        NSString *localPath2 = [NSString stringWithFormat:@&quot;%@/%@&quot;,$.documentPath,@&quot;face2.png&quot;];
+        self.requestFiles = @{@&quot;image1&quot;:[NSURL fileURLWithPath:localPath1],
+                               @&quot;image2&quot;:[NSURL fileURLWithPath:localPath2]};
+    }
+    @end
+
+requestFiles方法里面返回一个文件字典。EasyIOS会自动进行识别上传
+</code></pre><h3 id="">激活请求</h3>
+<pre><code>如果你想快速的激活一个Request
+
+
+    self.sceneModel.request.requestNeedActive = YES;
+</code></pre><h3 id="scenemodel">一个在SceneModel中使用的例子</h3>
+<pre><code>-(void)loadSceneModel{
+    [super loadSceneModel];
+    [self.action useCache];
+    self.userData = nil;
+
+    @weakify(self);
+    _request = [UserRequest RequestWithBlock:^{
+        @strongify(self);
+        if(self.request.userId.isNotEmpty){
+            [self SEND_IQ_ACTION:self.request];
+        }
+    }];
+
+    [[RACObserve(self.request, state) //监控 网络请求的状态
+      filter:^BOOL(NSNumber *state) {
+          @strongify(self);
+          return self.request.succeed;
+      }]
+     subscribeNext:^(NSNumber *state) {
+         @strongify(self);
+         NSError *error;
+         self.userData = [[UserEntity alloc] initWithDictionary:[self.request.output objectForKey:@&quot;data&quot;] error:&amp;error];//Model的ORM操作，dictionary to object
+     }];
+}
+</code></pre>
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./Action.html" class="navigation navigation-prev " aria-label="Previous page: Action"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./Model.html" class="navigation navigation-next " aria-label="Next page: Model"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

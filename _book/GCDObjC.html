@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>GCDObjC | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./FLKAutoLayout.html" />
     
     
-
-    
+    <link rel="prev" href="./TMCache.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.5" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -322,7 +322,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.9.5" data-path="GCDObjC.html">
+        <li class="chapter active" data-level="1.9.5" data-path="GCDObjC.html">
             
                 
                     <a href="./GCDObjC.html">
@@ -499,13 +499,119 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_10">
+                    
+                        <h1 id="gcdobjc">GCDObjC</h1>
+<p>GCDObjC is an Objective-C wrapper for the most commonly used features of Grand Central Dispatch.  It has four main aims:</p>
+<ul>
+<li>Organize the flat C API into appropriate classes.</li>
+<li>Use intention-revealing names to distinguish between synchronous and asynchronous functions. </li>
+<li>Use more convenient arguments such as NSTimeIntervals.</li>
+<li>Add convenience methods.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p><strong>GCDObjC</strong> requires ARC and iOS 6.0.  (Prior to 6.0, dispatch objects were not considered Objective-C objects, and therefore required manual memory management.)</p>
+<p><strong>GCDObjC.h</strong> is the only header file that needs to be imported.</p>
+<p>For usage examples, see <a href="https://github.com/mjmsmith/gcdobjc/blob/master/GCDObjCTests/GCDObjCTests.m" target="_blank">GCDObjCTests.m</a>.</p>
+<h2 id="gcdqueue">GCDQueue</h2>
+<p>Queues are implemented in the <strong>GCDQueue</strong> class.</p>
+<ul>
+<li>convenience accessors for global queues</li>
+</ul>
+<pre><code>+ (GCDQueue *)mainQueue;
++ (GCDQueue *)globalQueue;
++ (GCDQueue *)highPriorityGlobalQueue;
++ (GCDQueue *)lowPriorityGlobalQueue;
++ (GCDQueue *)backgroundPriorityGlobalQueue;
+</code></pre><ul>
+<li>creating serial and concurrent queues</li>
+</ul>
+<pre><code>- (instancetype)initSerial;
+- (instancetype)initConcurrent;
+</code></pre><ul>
+<li>queueing blocks for asynchronous execution</li>
+</ul>
+<pre><code>- (void)queueBlock:(dispatch_block_t)block;
+- (void)queueBlock:(dispatch_block_t)block afterDelay:(double)seconds;
+- (void)queueBlock:(dispatch_block_t)block inGroup:(GCDGroup *)group;
+</code></pre><ul>
+<li>queueing blocks for synchronous execution</li>
+</ul>
+<pre><code>- (void)queueAndAwaitBlock:(dispatch_block_t)block;
+- (void)queueAndAwaitBlock:(void (^)(size_t))block iterationCount:(size_t)count;
+</code></pre><ul>
+<li>queueing barrier blocks for synchronous or asynchronous execution</li>
+</ul>
+<pre><code>- (void)queueBarrierBlock:(dispatch_block_t)block;
+- (void)queueAndAwaitBarrierBlock:(dispatch_block_t)block;
+</code></pre><ul>
+<li>queueing notify blocks on groups</li>
+</ul>
+<pre><code>- (void)queueNotifyBlock:(dispatch_block_t)block inGroup:(GCDGroup *)group;
+</code></pre><ul>
+<li>suspending and resuming a queue</li>
+</ul>
+<pre><code>- (void)suspend;
+- (void)resume;
+</code></pre><h2 id="gcdsemaphore">GCDSemaphore</h2>
+<p>Semaphores are implemented in the <strong>GCDSemaphore</strong> class.</p>
+<ul>
+<li>creating semaphores</li>
+</ul>
+<pre><code>- (instancetype)init;
+- (instancetype)initWithValue:(long)value;
+</code></pre><ul>
+<li>signaling and waiting on a semaphore</li>
+</ul>
+<pre><code>- (BOOL)signal;
+- (void)wait;
+- (BOOL)wait:(double)seconds;
+</code></pre><h2 id="gcdgroup">GCDGroup</h2>
+<p>Groups are implemented in the <strong>GCDGroup</strong> class.</p>
+<ul>
+<li>creating groups</li>
+</ul>
+<pre><code>- (instancetype)init;
+</code></pre><ul>
+<li>entering and leaving a group</li>
+</ul>
+<pre><code>- (void)enter;
+- (void)leave;
+</code></pre><ul>
+<li>waiting on completion of a group</li>
+</ul>
+<pre><code>- (void)wait;
+- (BOOL)wait:(double)seconds;
+</code></pre><h2 id="macros">Macros</h2>
+<p>Two macros are provided for wrapping <strong>dispatch_once()</strong> calls.</p>
+<ul>
+<li>executing a block only once: <strong>GCDExecOnce(block)</strong></li>
+</ul>
+<pre><code>for (int i = 0; i &lt; 10; ++i) {
+    GCDExecOnce(^{ NSLog(@&quot;This will only be logged once.&quot;); });
+}
+</code></pre><ul>
+<li>creating a singleton instance of a class: <strong>GCDSharedInstance(block)</strong></li>
+</ul>
+<pre><code>+ (instancetype)sharedInstance {
+  GCDSharedInstance(^{ return [[self class] new]; });
+}
+</code></pre><p>The block supplied to <strong>GCDSharedInstance()</strong> must return an instance of the desired class.</p>
 
-
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./TMCache.html" class="navigation navigation-prev " aria-label="Previous page: TMCache"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./FLKAutoLayout.html" class="navigation navigation-next " aria-label="Next page: FLKAutoLayout"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>Scene | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./SceneModel.html" />
     
     
-
-    
+    <link rel="prev" href="./Home" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.1" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -83,7 +83,7 @@
                 
     
         
-        <li class="chapter " data-level="1.1" data-path="Scene.html">
+        <li class="chapter active" data-level="1.1" data-path="Scene.html">
             
                 
                     <a href="./Scene.html">
@@ -499,13 +499,64 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
-
-
+                
+                    <section class="normal" id="section-gitbook_18">
+                    
+                        <h1 id="scene-class-reference">Scene Class Reference</h1>
+<p>Scene 继承UIViewController，EasyIOS里面仅仅负责视图的展示工作。</p>
+<p>===</p>
+<h2 id="tasks">Tasks</h2>
+<p>  parentScene <code>property</code></p>
+<ul>
+<li>– showBarButton:title:fontColor:</li>
+<li>– showBarButton:imageName:</li>
+<li>– showBarButton:button:</li>
+<li>– leftButtonTouch</li>
+<li>– rightButtonTouch</li>
+<li>– setTitleText:</li>
+<li>– setTitleText:hidden:</li>
+</ul>
+<p>===</p>
+<h2 id="properties">Properties</h2>
+<h3 id="parentscene">parentScene</h3>
+<pre><code>@property (nonatomic, retain) Scene *parentScene
+</code></pre><p>===</p>
+<h2 id="instance-methods">Instance Methods</h2>
+<h3 id="leftbuttontouch">leftButtonTouch</h3>
+<pre><code>- (void)leftButtonTouch
+</code></pre><p>左按钮点击事件。</p>
+<h3 id="rightbuttontouch">rightButtonTouch</h3>
+<pre><code>- (void)rightButtonTouch
+</code></pre><p>右按钮点击事件。</p>
+<h3 id="settitletext">setTitleText:</h3>
+<pre><code>- (void)setTitleText:(NSString *)str
+</code></pre><p>//添加到导航条标题</p>
+<h3 id="showbarbuttonbutton">showBarButton:button:</h3>
+<pre><code>- (void)showBarButton:(EzNavigationBar)position button:(UIButton *)button
+</code></pre><p>设置导航条左右按钮，使用方法：</p>
+<pre><code>[self showBarButton:NAV_RIGHT button:button]; //把某按钮设置为导航右按钮
+</code></pre><h3 id="showbarbuttonimagename">showBarButton:imageName:</h3>
+<pre><code>- (void)showBarButton:(EzNavigationBar)position imageName:(NSString *)imageName
+</code></pre><p>设置导航条左右按钮，使用方法：</p>
+<pre><code>[self showBarButton:NAV_RIGHT imageName:@&quot;image&quot;]; //把某图片设置为导航右按钮
+</code></pre><h3 id="showbarbuttontitlefontcolor">showBarButton:title:fontColor:</h3>
+<pre><code>- (void)showBarButton:(EzNavigationBar)position title:(NSString *)name fontColor:(UIColor *)color
+</code></pre><p>设置导航条左右按钮，使用方法：</p>
+<pre><code>[self showBarButton:NAV_LEFT title:@&quot;left&quot; fontColor:[UIColor blackColor]]; //设置左按钮为left，颜色为black
+</code></pre>
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./Home" class="navigation navigation-prev " aria-label="Previous page: Home"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./SceneModel.html" class="navigation navigation-next " aria-label="Next page: SceneModel"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

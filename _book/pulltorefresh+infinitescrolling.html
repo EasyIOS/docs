@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>Pulltorefresh | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./AutoLayout-UIScrollView.html" />
     
     
-
-    
+    <link rel="prev" href="./AutoLayoutCell.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.6" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -201,7 +201,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.6" data-path="pulltorefresh+infinitescrolling.html">
+        <li class="chapter active" data-level="1.6" data-path="pulltorefresh+infinitescrolling.html">
             
                 
                     <a href="./pulltorefresh+infinitescrolling.html">
@@ -499,13 +499,53 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_26">
+                    
+                        <h1 id="svpulltorefresh--svinfinitescrolling">SVPullToRefresh + SVInfiniteScrolling</h1>
+<p>1.addPullToRefreshWithActionHandler</p>
+<pre><code>[self.tableView addPullToRefreshWithActionHandler:^{
+       self.sceneModel.request.page = @1;
+       self.sceneModel.active = YES;
+}];
+</code></pre><p>2.addInfiniteScrollingWithActionHandler</p>
+<pre><code>[self.tableView addInfiniteScrollingWithActionHandler:^{
+        self.sceneModel.request.page = [self.sceneModel.request.page increase:@1];
+        self.sceneModel.active = YES;
+}];
+</code></pre><p>3.触发刷新</p>
+<pre><code> [self.tableView triggerPullToRefresh];
+ [self.tableView triggerInfiniteScrolling];
+</code></pre><p>4.停止所有刷新动作</p>
+<pre><code>[tableView endAllRefreshing];
+</code></pre><p>5.自动分页（需要Pagination）类</p>
+<pre><code>Pagination *pagination = [Pagination Model];
+pagination.page = @2;
+pagination.pageSize = @10;
+pagination.total = @19;
+pagination.isEnd = @1;
 
+self.tableview.pagination = pagination;
 
+self.dataArray = [pagination
+                success:self.dataArray
+                newArray:self.sceneModel.list];
+
+[self.tableView endAllRefreshing];
+</code></pre>
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./AutoLayoutCell.html" class="navigation navigation-prev " aria-label="Previous page: AutoLayoutCell"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./AutoLayout-UIScrollView.html" class="navigation navigation-next " aria-label="Next page: AutoLayout-UIScrollView"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

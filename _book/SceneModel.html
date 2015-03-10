@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>SceneModel | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./Action.html" />
     
     
-
-    
+    <link rel="prev" href="./Scene.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.2" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -99,7 +99,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.2" data-path="SceneModel.html">
+        <li class="chapter active" data-level="1.2" data-path="SceneModel.html">
             
                 
                     <a href="./SceneModel.html">
@@ -499,13 +499,61 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
-
-
+                
+                    <section class="normal" id="section-gitbook_19">
+                    
+                        <h1 id="scenemodel-class-reference">SceneModel Class Reference</h1>
+<p>SceneModel 负责数据的绑定，控制视图更新，网络请求的发起，以及Model的生成工作</p>
+<p>===</p>
+<h2 id="tasks">Tasks</h2>
+<p>  action <code>property</code></p>
+<ul>
+<li><p>+SceneModel</p>
+</li>
+<li><p>– handleActionMsg:</p>
+</li>
+<li><p>– SEND_ACTION:</p>
+</li>
+<li><p>– SEND_CACHE_ACTION:</p>
+</li>
+<li><p>– SEND_NO_CACHE_ACTION:</p>
+</li>
+<li><p>– initModel</p>
+</li>
+</ul>
+<p>===</p>
+<h2 id="properties">Properties</h2>
+<h3 id="action">action</h3>
+<pre><code>@property (nonatomic, strong) Action *action
+</code></pre><p>===</p>
+<h2 id="class-methods">Class Methods</h2>
+<h3 id="scenemodel">SceneModel</h3>
+<pre><code>+ (id)SceneModel
+</code></pre><h2 id="instance-methods">Instance Methods</h2>
+<h3 id="send_action">SEND_ACTION:</h3>
+<pre><code>- (void)SEND_ACTION:(NSDictionary *)dict
+</code></pre><h3 id="send_cache_action">SEND_CACHE_ACTION:</h3>
+<pre><code>- (void)SEND_CACHE_ACTION:(NSDictionary *)dict
+</code></pre><h3 id="send_no_cache_action">SEND_NO_CACHE_ACTION:</h3>
+<pre><code>- (void)SEND_NO_CACHE_ACTION:(NSDictionary *)dict
+</code></pre><h3 id="handleactionmsg">handleActionMsg:</h3>
+<pre><code>- (void)handleActionMsg:(ActionData *)msg
+</code></pre><h3 id="initmodel">initModel</h3>
+<pre><code>- (id)initModel
+</code></pre>
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./Scene.html" class="navigation navigation-prev " aria-label="Previous page: Scene"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./Action.html" class="navigation navigation-next " aria-label="Next page: Action"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>AutoLayoutCell | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./pulltorefresh+infinitescrolling.html" />
     
     
-
-    
+    <link rel="prev" href="./ReactiveCocoa.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.5" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -185,7 +185,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5" data-path="AutoLayoutCell.html">
+        <li class="chapter active" data-level="1.5" data-path="AutoLayoutCell.html">
             
                 
                     <a href="./AutoLayoutCell.html">
@@ -499,13 +499,86 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_4">
+                    
+                        <h2 id="autolayoutcell">AutoLayoutCell</h2>
+<p>我们在实际开发中肯定遇到过自适应Cell的需求</p>
+<h4 id="ios6">在IOS6或者更早以前</h4>
+<p>在IOS6或者更早以前，大都是通过程序计算出cell得高度，在进行渲染。
+可是实际开发中使用<code>UITableView</code>，我们发现，<code>UITableView</code>是先请求Cell的高度再去渲染视图，这就需要我们在请求高度的时候模拟渲染获得高度，或者根据图片大小或者字符串长度计算出Cell的最小高度。这样就导致了计算不准确等等问题。</p>
+<h4 id="ios8">在IOS8</h4>
+<p>IOS8中,<code>UITableView</code>有了self sizing cells 这样一个功能来解决动态Cell的问题。</p>
+<p>为了兼容IOS7，并且更简单的实现动态Cell，EasyIOS封装了基于Autolayout的动态Cell布局的功能。</p>
+<p>下面是一个例子：</p>
+<ul>
+<li>首先我们需要声明一个ALTableView<pre><code>  self.tableView = [[ALTableView alloc]init];
+  self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  self.tableView.cellFactory.delegate = self;
+  self.tableView.estimatedRowHeight = 250.0f; 
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+</code></pre><code>estimatedRowHeight</code>如果不设置tabelView会去调用<code>heightForRowAtIndexPath</code>,所以为了减轻渲染的负担，我们在这里提供一个大致的值。(应该也是苹果团队的一种补救措施)。</li>
+<li>实现<code>UITableViewDataSource</code></li>
+</ul>
+<pre><code>- (CGFloat)tableView:(ALTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [tableView.cellFactory cellHeightForIdentifier:@&quot;RssCell&quot; atIndexPath:indexPath];
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.rssSceneModel.dataArray.count;
+}
 
+- (UITableViewCell *)tableView:(ALTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [tableView.cellFactory cellWithIdentifier:@&quot;RssCell&quot; forIndexPath:indexPath];
+}
+</code></pre><ul>
+<li>实现<code>ALTableViewCellFactoryDelegate</code>代理</li>
+</ul>
+<pre><code>- (void)tableView:(UITableView *)tableView configureCell:(RssCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.delegate = self;
+    [cell reloadRss:[self.rssSceneModel.dataArray objectAtIndex:indexPath.row]
+               with:self.rssSceneModel.rssList.feed];
+}
+</code></pre><p>这里仅仅是导入需要渲染的数据</p>
+<ul>
+<li><p>声明一个<code>ALBaseCell</code>的子类</p>
+<pre><code>@interface RssCell : ALBaseCell
+@end
+</code></pre></li>
+<li><p><code>ALBaseCell</code>子类的初始化入口</p>
+</li>
+</ul>
+<pre><code>-(void)commonInit{
+    [super commonInit];
+    //在这里添加需要的控件到self.contentView
+    [self.contentView addSubview:_feedTitle];
+    [self loadAutolayout];
+}
+-(void)loadAutolayout{
+    //这里使用AutoLayout对Cell进行布局
+}
+</code></pre><p>当然上面这些，都可以在xib中完成:)，特别要注意最底部的控件 要设置他与bottom的关系，否则ContentView无法知道他的最小高度比如</p>
+<pre><code>[_lastView alignBottom:@&quot;-5&quot; toView:self.contentView];
+</code></pre><ul>
+<li>OK,现在就可以实现动态的Cell了，具体实现可以参见EasyRSS这个项目</li>
+</ul>
+
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./ReactiveCocoa.html" class="navigation navigation-prev " aria-label="Previous page: ReactiveCocoa"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./pulltorefresh+infinitescrolling.html" class="navigation navigation-next " aria-label="Next page: Pulltorefresh"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

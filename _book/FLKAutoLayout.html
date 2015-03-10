@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>FLKAutoLayout | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./UICKeyChainStore.html" />
     
     
-
-    
+    <link rel="prev" href="./GCDObjC.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.6" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -338,7 +338,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.9.6" data-path="FLKAutoLayout.html">
+        <li class="chapter active" data-level="1.9.6" data-path="FLKAutoLayout.html">
             
                 
                     <a href="./FLKAutoLayout.html">
@@ -499,13 +499,139 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_9">
+                    
+                        <h1 id="flkautolayout">FLKAutoLayout</h1>
+<p>FLKAutoLayout is a category on UIView which makes it easy to setup layout constraints in code.</p>
+<p>FLKAutoLayout creates simple constraints with a readable syntax and provides many convenience methods to setup more complex constraints between multiple views at once. It automatically adds the constraints to the nearest common superview of the views involved and sets the translatesAutoresizingMaskIntoConstraints property on those views to NO.</p>
+<p>FLKAutoLayout provides methods on UIView <em>instances</em> for simple layout constraints like width and height or constraining an edge of one view to another. Furthermore it provides methods on the UIView <em>class</em> for more complex layout constraints where more than two views are involved.</p>
+<p>For some examples of how to setup constraints please check the <a href="./Example/">example project</a>.</p>
+<h2 id="example">Example</h2>
+<p>Let&#39;s assume we have a bunch of labels and an equal amount of textFields and we want to align them nicely in a grid like manner:</p>
+<pre><code class="lang-objective-c">// align the first label with its superview
+[labels[0] alignTop:@&quot;20&quot; leading:@&quot;20&quot; toView:labels[0].superview];
+// give it a minimum width of 200 and a maximum width of 300
+[labels[0] constrainWidth:@&quot;&gt;=200,&lt;=300&quot;];
+// now constrain all labels to this size
+[UIView alignLeadingAndTrailingEdgesOfViews:labels];
+// space the labels out vertically with 10 points in between
+[UIView spaceOutViewsVertically:labels predicate:@&quot;10&quot;];
 
+// now let&#39;s take care of the text fields. 
+// the first one has a fixed space of 20 to its label
+[textFields[0] constrainLeadingSpaceToView:labels[0] predicate:@&quot;20&quot;];
+// constrain the right edge to its superview with 20 points padding
+[textFields[0] alignTrailingEdgeWithView:textFields[0].superview predicate:@&quot;20&quot;];
+// constrain all other text fields to the same width
+[UIView alignLeadingAndTrailingEdgesOfViews:textFields];
+// and finally let&#39;s align the baseline of each label with the baseline of each text field
+[UIView alignAttribute:NSLayoutAttributeBaseline ofViews:labels toViews:textFields predicate:nil];
+</code></pre>
+<h2 id="flkautolayout-instance-methods">FLKAutoLayout instance methods</h2>
+<p>FLKAutoLayout extends UIView instances with methods to setup simple constraints in a readable form.</p>
+<p>Aligning edges of one view to another:</p>
+<pre><code class="lang-objective-c"> // constrain the leading edge of the view to the leading edge of another
+[view alignLeadingEdgeWithView:otherView predicate:nil];
 
+ // same as before but use a 20 point offset
+[view alignLeadingEdgeWithView:otherView predicate:@&quot;20&quot;];
+
+ // same as before but give this constraint a priority of 750
+[view alignLeadingEdgeWithView:otherView predicate:@&quot;20@750&quot;];
+
+// aligning some other edge types
+[view alignTopEdgeWithView:otherView predicate:nil];
+[view alignBottomEdgeWithView:otherView predicate:nil];
+[view alignTrailingEdgeWithView:otherView predicate:nil];
+[view alignBaselineWithView:otherView predicate:nil];
+[view alignCenterXWithView:otherView predicate:nil];
+[view alignCenterYWithView:otherView predicate:nil];
+
+// centering two views
+[view alignCenterWithView:otherView];
+</code></pre>
+<p>Constraining width &amp; height:</p>
+<pre><code class="lang-objective-c">[view constrainWidth:@&quot;400&quot;];
+[view constrainHeight:@&quot;300&quot;];
+// or combined:
+[view constrainWidth:@&quot;400&quot; height:@&quot;300&quot;];
+// or relative to another view
+[view constrainWidthToView:otherView predicate:@&quot;*.3&quot;]; // 30% of otherView&#39;s width
+[view constrainHeightToView:otherView predicate:@&quot;&gt;=*.5&quot;]; // 50% of otherView&#39;s width
+</code></pre>
+<p>Spacing out two views:</p>
+<pre><code class="lang-objective-c">// creating a &gt;=20 points space between the top edge of one view to the bottom edge of the other
+[view constrainTopSpaceToView:otherView predicate:@&quot;&gt;=20&quot;];
+// creating a &gt;=20 points space between the leading edge of one view to the trailing edge of the other
+[view constrainLeadingSpaceToView:otherView predicate:@&quot;&gt;=20&quot;];
+</code></pre>
+<p>If you need more control over which layout attribute of one view should be constrained to which layout attribute of another view,
+you can use a generic helper method:</p>
+<pre><code class="lang-objective-c">[view alignAttribute:NSLayoutAttributeCenterX to Attribute:NSLayoutAttributeTrailing ofView:otherView predicate:@&quot;20&quot;];
+</code></pre>
+<h2 id="flkautolayout-class-methods">FLKAutoLayout class methods</h2>
+<p>For laying out more than two views at once FLKAutoLayout provides extends UIView with some class methods.</p>
+<p>Align multiple views at once:</p>
+<pre><code class="lang-objective-c">// align all views in the views array along their leading edge
+[UIView alignLeadingEdgesOfViews:views];
+// align all views in the views array along their bottom edge
+[UIView alignBottomEdgesOfViews:views];
+// see UIView+FLKAutoLayout.h for more...
+</code></pre>
+<p>Constrain width and height of multiple views:</p>
+<pre><code class="lang-objective-c">// constrain all views to the same height
+[UIView equalHeightForViews:views];
+// constrain all views to the same width
+[UIView equalWidthForViews:views];
+</code></pre>
+<p>Spacing out multiple views:</p>
+<pre><code class="lang-objective-c">// space out views horizontally with 20 points in between
+[UIView spaceOutViewsHorizontally:views predicate:@&quot;20&quot;];
+// space out views vertically with no space in between
+[UIView spaceOutViewsVertically:views predicate:nil];
+
+// Distribute views according to their horizontal center
+[UIView distributeCenterXOfViews:views inView:containerView];
+// Distribute views according to their vertical center
+[UIView distributeCenterYOfViews:views inView:containerView];
+</code></pre>
+<p>Please note that distributing views at their centers will line up the center of the first view at the edge of the container view.</p>
+<h3 id="the-predicate-argument">The predicate argument</h3>
+<p>Many of the methods take a predicate string which resembles the syntax Apple uses in their visual format language,
+extended by the possibiliy to also specify a multiplier. A nil predicate is the same as @&quot;0&quot;.</p>
+<p>[ == | &gt;= | &lt;= ] [ *multipler ] [ constant ] [ @priority ], ...</p>
+<p>For example:</p>
+<pre><code class="lang-objective-c">// greater than or equal to 300points, small then 500 points
+[view constrainWidth:@&quot;&gt;=300,&lt;=500&quot;];
+// equal to 300 points
+[view constrainWidth:@&quot;300&quot;];
+// greater than or equal to 300 points with priority of 250
+[view constrainWidth:@&quot;&gt;=300@250&quot;];
+
+// greater than or equal to 1/2 of the otherView width
+[view constrainWidthToView:otherView predicate:@&quot;&gt;=*.5&quot;];
+// greater than or equal to 1/2 of the otherView width, smaller than or equal to 600 points with a priority of 100
+[view constrainWidthToView:otherView predicate:@&quot;&gt;=*.5,&lt;=600@100&quot;];
+</code></pre>
+<h2 id="creator">Creator</h2>
+<p><a href="http://floriankugler.de" target="_blank">Florian Kugler</a> (<a href="https://twitter.com/floriankugler" target="_blank">@floriankugler</a>).</p>
+<h2 id="license">License</h2>
+<p>FLKAutoLayout is available under the MIT license. See the LICENSE file for more info.</p>
+
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./GCDObjC.html" class="navigation navigation-prev " aria-label="Previous page: GCDObjC"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./UICKeyChainStore.html" class="navigation navigation-next " aria-label="Next page: UICKeyChainStore"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

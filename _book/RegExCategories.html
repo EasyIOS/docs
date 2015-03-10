@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>RegExCategories | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./TMCache.html" />
     
     
-
-    
+    <link rel="prev" href="./IconFont.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.3" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -290,7 +290,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.9.3" data-path="RegExCategories.html">
+        <li class="chapter active" data-level="1.9.3" data-path="RegExCategories.html">
             
                 
                     <a href="./RegExCategories.html">
@@ -499,13 +499,57 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_15">
+                    
+                        <h1 id="objective-c-regex-categories">Objective-C RegEx Categories</h1>
+<h2 id="overview">Overview</h2>
+<p>This project is a collection of objective-c categories for NSRegularExpression and NSString that make usage easier and more concise. For example:</p>
+<pre><code class="lang-objc"><span class="hljs-comment">//Using NSRegularExpression</span>
+<span class="hljs-built_in">NSString</span>* string = <span class="hljs-string">@"I have 2 dogs."</span>;
+NSRegularExpression *regex = [NSRegularExpression regular ExpressionWithPattern:<span class="hljs-string">@"\\d+"</span> options:NSRegularExpressionCaseInsensitive error:&amp;error];
+NSTextCheckingResult *match = [regex firstMatchInString:string options:<span class="hljs-number">0</span> range:NSMakeRange(<span class="hljs-number">0</span>, [string length])];
+<span class="hljs-built_in">BOOL</span> isMatch = match != <span class="hljs-literal">nil</span>;
 
+<span class="hljs-comment">// Using this library</span>
+<span class="hljs-built_in">BOOL</span> isMatch = [<span class="hljs-string">@"I have 2 dogs."</span> isMatch:RX(<span class="hljs-string">@"\\d+"</span>)];
+</code></pre>
+<h2 id="getting-started">Getting Started</h2>
+<p>This library has no dependencies and works for iOS4+ and OSX v10.7+.</p>
+<p>To install it, just copy these two files into your project:</p>
+<ul>
+<li>RegExCategories.h</li>
+<li>RegExCategories.m</li>
+</ul>
+<p>You may want to add it to your Prefix.pch so that is is available across your code base.</p>
+<pre><code class="lang-objc"><span class="hljs-preprocessor">#ifdef __OBJC__</span>
+    <span class="hljs-comment">/* ...other references... */</span>
+    <span class="hljs-preprocessor">#import <span class="hljs-title">"RegExCategories.h"</span></span>
+<span class="hljs-preprocessor">#endif</span>
+</code></pre>
+<p>You also need to have  <a href="https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/WhatsNewXcode/Articles/xcode_4_2.html" target="_blank">ARC</a> enabled on your XCode project. If you don&#39;t then add the <code>-fobjc-arc</code> flag on <code>Objective-C-Regex-Categories.m</code> under Targets &gt; Build Phases &gt; Compile Sources (<a href="http://stackoverflow.com/a/19925947/193896" target="_blank">more info here</a>). </p>
+<h2 id="examples">Examples</h2>
+<h2 id="support">Support</h2>
+<p>If you need help, <a href="https://github.com/bendytree/Objective-C-RegEx-Categories/issues" target="_blank">submit an issue</a>, <a href="https://github.com/bendytree/Objective-C-RegEx-Categories/pulls" target="_blank">send a pull request</a>, or tweet at me <a href="http://twitter.com/bendytree" target="_blank">@BendyTree</a>.</p>
+<h2 id="licensing">Licensing</h2>
+<p><a href="https://github.com/bendytree/Objective-C-RegEx-Categories/blob/master/LICENSE.txt" target="_blank">MIT License</a> - do whatever you want, just (1) provide attribution and (2) don&#39;t hold me liable.</p>
+<h2 id="travis-ci">Travis-CI</h2>
+<p>This repository includes unit tests written in the <a href="https://developer.apple.com/library/ios/documentation/ToolsLanguages/Conceptual/Xcode_Overview/UnitTestYourApp/UnitTestYourApp.html" target="_blank">XCTest</a> framework. These test are automatically verified using <a href="https://travis-ci.org/bendytree/Objective-C-RegEx-Categories" target="_blank">Travis-CI</a>. Here is the current status:</p>
+<p><a href="https://travis-ci.org/bendytree/Objective-C-RegEx-Categories" target="_blank"><img src="https://travis-ci.org/bendytree/Objective-C-RegEx-Categories.png" alt="Build Status"></a></p>
 
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./IconFont.html" class="navigation navigation-prev " aria-label="Previous page: IconFont"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./TMCache.html" class="navigation navigation-next " aria-label="Next page: TMCache"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

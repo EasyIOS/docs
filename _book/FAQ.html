@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>FAQ | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -20,9 +20,7 @@
     
     
     
-    
-
-    
+    <link rel="prev" href="./Crontab-IOS.html" />
     
 
         
@@ -34,7 +32,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="2" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -396,7 +394,7 @@
         </li>
     
         
-        <li class="chapter " data-level="2" data-path="FAQ.html">
+        <li class="chapter active" data-level="2" data-path="FAQ.html">
             
                 
                     <a href="./FAQ.html">
@@ -499,12 +497,50 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_8">
+                    
+                        <ul>
+<li><p>Scenmode是怎么出发request 调用action的呢?demo里是scene观察tableview的page </p>
+<pre><code>  scenemodel有一个成员属性叫action，scenemodel会把你的request提交给action,观察page是因为有个分页
+</code></pre></li>
+<li><p>触发的时机呢</p>
+<pre><code>  想要发起网络请求就[self SEND_NO_CACHE_ACTION:_goodsListRequest];
+</code></pre></li>
+<li><p>如果viewdidload里我不初始化tableview的page 是不会请求网络数据</p>
+<pre><code>  网络请求和page没关系。。。看你哪个页面要不要分页，如果不用，就没有page啊。如果有分页，那么我只要把page从1变成2，那么数据就来了，不是很爽么
+</code></pre></li>
+</ul>
+<ul>
+<li><p>scene里声明了成名变量scenemodel 然后我在viewdidload里调用<code>[scenemodel SEND_NO_CACHE_ACTION]</code> 这样可行？</p>
+<pre><code>  这样是可以的。。不过就违背了mvvm思想,而且你在viewdidload里面调用，要是你别的地方还想要调用，就又要SEND_NO_CACHE_ACTION一次
+</code></pre></li>
+</ul>
+<ul>
+<li><p>但是我要按mvvm的思想要做的话我是不是要在scenemodel里声明个变量然后我在viewdidload里改变scenemodel的变量来触发scenemodel调用 SEND_NO_CACHE_ACTION</p>
+<pre><code>  是的
+</code></pre></li>
+<li><p>但这个变量我好像没啥意义 只是为了触发才这么做？</p>
+<pre><code>  是的！，ReactiveViewModel，也是这样的，它定义了一个叫active属性，只要active是yes就干活,这个变量easyios里面没有定义.
+  如果你实在是没有这个状态变量，就仿照ReactiveViewModel，定义一个active属性，每次修改成YES，执行完成后改成NO 
+</code></pre></li>
+<li><p><a href="https://github.com/ReactiveCocoa/ReactiveViewModel" target="_blank">ReactiveViewModel项目地址</a></p>
+</li>
+<li><p><code>RAC(self.homeSceneModel.request,page) = RACObserve(self.tableView,page);</code>这个大概是啥意思 没看懂</p>
+<pre><code>  观察 self.tableView,page 如果有修改，就同步到 self.homeSceneModel.request,page
+</code></pre></li>
+</ul>
 
-
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
+        
+        <a href="./Crontab-IOS.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Crontab-IOS"><i class="fa fa-angle-left"></i></a>
         
         
     </div>

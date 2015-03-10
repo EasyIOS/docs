@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>IconFont | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./RegExCategories.html" />
     
     
-
-    
+    <link rel="prev" href="./EasyKit.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.2" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -274,7 +274,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.9.2" data-path="IconFont.html">
+        <li class="chapter active" data-level="1.9.2" data-path="IconFont.html">
             
                 
                     <a href="./IconFont.html">
@@ -499,13 +499,36 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_11">
+                    
+                        <ul>
+<li><p>生成一个图形按钮方法</p>
+<pre><code>  NSString* icon = [IconFont icon:@&quot;fa_angle_down&quot; fromFont:fontAwesome];//获取字符
 
-
+  UIButton *button = [IconFont buttonWithIcon:icon fontName:fontAwesome size:15.0f color:[UIColor blackColor]];//生成按钮
+</code></pre></li>
+</ul>
+<p>字体名称<code>fa_angle_down</code> 可以在demo字典中查找到：
+目前提供了4种图片字体下面是他们的弘定义：</p>
+<pre><code>#define fontAwesome @&quot;FontAwesome&quot;
+#define zocialRegularWebfont @&quot;Zocial-Regular&quot;
+#define ionIcons @&quot;Ionicons&quot;
+#define foundationIcons @&quot;fontcustom&quot;
+</code></pre>
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./EasyKit.html" class="navigation navigation-prev " aria-label="Previous page: EasyKit"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./RegExCategories.html" class="navigation navigation-next " aria-label="Next page: RegExCategories"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

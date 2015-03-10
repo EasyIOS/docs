@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>EasyKit | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,9 +19,7 @@
         
     
     
-    
-    
-
+    <link rel="next" href="./IconFont.html" />
     
     
 
@@ -34,7 +32,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.1" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -258,7 +256,7 @@
                 
     
         
-        <li class="chapter " data-level="1.9.1" data-path="EasyKit.html">
+        <li class="chapter active" data-level="1.9.1" data-path="EasyKit.html">
             
                 
                     <a href="./EasyKit.html">
@@ -499,13 +497,49 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_7">
+                    
+                        <h1 id="easykit-class-reference">EasyKit Class Reference</h1>
+<p>EasyKit 里面有很多实用便捷的小功能。😊 统一用$符号调用</p>
+<ul>
+<li>(NSString *)homePath;//应用程序目录的路径，在该目录下有三个文件夹：Documents、Library、temp以及一个.app包！该目录下就是应用程序的沙盒，应用程序只能访问该目录下的文件夹！！！</li>
+<li>(NSString *)desktopPath;//数据所存桌面的绝对路径</li>
+<li>(NSString *)documentPath;// 文档目录，需要ITUNES同步备份的数据存这里</li>
+<li>(NSString *)libPrePath; // 配置目录，配置文件存这里</li>
+<li>(NSString *)libCachePath; // 缓存目录，系统永远不会删除这里的文件，ITUNES会删除</li>
+<li>(NSString *)appPath;  // .app 程序相对目录，不能存任何东西</li>
+<li>(NSString *)tmpPath;    // 缓存目录，APP退出后，系统可能会删除这里的内容</li>
+<li>(NSString *)resourcePath; // .app 程序绝对目录，不能存任何东西</li>
+<li>(BOOL)touchPath:(NSString *)path;//创建路径</li>
+<li><p>(BOOL)touchFile:(NSString *)file;//创建文件</p>
+</li>
+<li><p>(RACSignal*) rac_didNetworkChanges （rac监控网络状态的改变。）</p>
+<p>  使用示例：</p>
+<pre><code>  [[$ rac_didNetworkChanges]
+   subscribeNext:^(Reachability* reach) {
+       if([reach isReachableViaWiFi]){
+           EZLog(@&quot;正在使用Wi-Fi网络&quot;);
+       }else if ([reach isReachableViaWWAN]){
+           EZLog(@&quot;正在使用移动数据网络&quot;);
+       }else{
+           EZLog(@&quot;网络连接已断开&quot;);
+       }
+   }];
+</code></pre></li>
+</ul>
 
-
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        
+        <a href="./IconFont.html" class="navigation navigation-next navigation-unique" aria-label="Next page: IconFont"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

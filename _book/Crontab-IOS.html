@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>Crontab-IOS | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./FAQ.html" />
     
     
-
-    
+    <link rel="prev" href="./UICKeyChainStore.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.9.8" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -370,7 +370,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.9.8" data-path="Crontab-IOS.html">
+        <li class="chapter active" data-level="1.9.8" data-path="Crontab-IOS.html">
             
                 
                     <a href="./Crontab-IOS.html">
@@ -499,13 +499,116 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_5">
+                    
+                        <h1 id="crontab-ios">Crontab-IOS</h1>
+<hr>
+<p>A light-weight library to execute Objective-C codes only once in app life with a crontab like way. Execute code/blocks only for the first time the app runs, for example.</p>
+<h2 id="installation">Installation</h2>
+<p>We recommend you to install this project using CocoaPods:</p>
+<h2 id="installation-with-cocoapods">Installation with CocoaPods</h2>
+<p>CocoaPods is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like <a href="https://github.com/zhuchaowe/EasyIOS" target="_blank">EasyIOS</a> in your projects.</p>
+<h2 id="podfile">Podfile</h2>
+<pre><code>platform :ios, &#39;5.0&#39;
+pod &quot;Crontab-IOS&quot;
+</code></pre><h1 id="usage">Usage</h1>
+<blockquote>
+<p>cronRule : times day</p>
+</blockquote>
+<pre><code>NSString * cronRule = @&quot;1 1&quot;;
+[CronTabCenter addCronJob:cronRule forBlock:^{
+        NSLog(@&quot;1 1 executed&quot;);
+}];
+</code></pre><ul>
+<li><p>The cronRule is kind of NSString class , and separated By a Space.</p>
+</li>
+<li><p>The first number represents the times of the app launch today.</p>
+</li>
+<li><p>The second number represents the day of the app launch.</p>
+</li>
+<li><p><code>@&quot;1 1&quot;</code> means the first day&#39;s first launch，just like for the first time to launch。Use this option, for example, to run a welcome dialog or create a initial database.</p>
+</li>
+<li><p><code>@&quot;1 *&quot;</code>  means the every one day&#39;s first launch。Use this option, for example,to ask to buy the PRO version every day.</p>
+</li>
+<li><p><code>@&quot;1 */7&quot;</code>  means the every seven day&#39;s first launch。Use this option, for example,to ask to rate your app every 7 days.</p>
+</li>
+</ul>
+<blockquote>
+<p>cronRule : totalTimes</p>
+</blockquote>
+<pre><code>NSString * cronRule = @&quot;1&quot;;
+[CronTabCenter addCronJob:cronRule forBlock:^{
+        NSLog(@&quot;1 executed&quot;);
+}];
+</code></pre><ul>
+<li><p>The cronRule is kind of NSString class ,  with only one number.</p>
+</li>
+<li><p>The cronRule number represents the total times of the app launch.</p>
+</li>
+<li><p><code>@&quot;1&quot;</code> means the first day&#39;s first launch，just like the <code>@&quot;1 1&quot;</code>.</p>
+</li>
+<li><p><code>@&quot;*&quot;</code> means the every launch，just like the <code>@&quot;* *&quot;</code>.</p>
+</li>
+</ul>
+<h1 id="example">Example</h1>
+<p>This is just a example to show the usage of crontab-ios</p>
+<pre><code>
+    [CronTabCenter addCronJob:@&quot;1 1&quot; forBlock:^{
+        NSLog(@&quot;1 1 executed&quot;);
+    }];
 
+    [CronTabCenter  addCronJob:@&quot;2 1&quot; forBlock:^{
+        NSLog(@&quot;2 1 executed&quot;);
+    }];
 
+    [CronTabCenter  addCronJob:@&quot;1 *&quot; forBlock:^{
+        NSLog(@&quot;1 * executed&quot;);
+    }];
+
+    [CronTabCenter addCronJob:@&quot;2 *&quot; forBlock:^{
+        NSLog(@&quot;2 * executed&quot;);
+    } elseBlock:^{
+        NSLog(@&quot;2 * else executed&quot;);
+    }];
+
+    [CronTabCenter addCronJob:@&quot;3&quot; forBlock:^{
+        NSLog(@&quot;3 executed&quot;);
+    }];
+</code></pre><ul>
+<li>When we  launch the app for the first time, it will log the result</li>
+</ul>
+<pre><code> 1 1 executed
+ 1 * executed
+ 2 * else executed
+</code></pre><ul>
+<li>And when we  launch the app for the second time,it will log the result</li>
+</ul>
+<pre><code> 2 1 executed
+ 2 * executed
+</code></pre><ul>
+<li>And when we  launch the app for the third time,it will log the result</li>
+</ul>
+<pre><code> 2 * else executed
+ 3 executed
+</code></pre><ul>
+<li>And when we  launch the app for the forth time,it will log the result</li>
+</ul>
+<pre><code> 2 * else executed
+</code></pre>
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./UICKeyChainStore.html" class="navigation navigation-prev " aria-label="Previous page: UICKeyChainStore"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./FAQ.html" class="navigation navigation-next " aria-label="Next page: FAQ"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

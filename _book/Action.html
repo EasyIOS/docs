@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Glossary | EasyIOS  - Happy New Year 2015</title>
+        <title>Action | EasyIOS  - Happy New Year 2015</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
+    <link rel="next" href="./Request.html" />
     
     
-
-    
+    <link rel="prev" href="./SceneModel.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-level="" data-basepath="." data-revision="1425965216153">
+    <div class="book" data-level="1.2.1" data-basepath="." data-revision="1425965216153">
     
 
 <div class="book-summary">
@@ -116,7 +116,7 @@
                 
     
         
-        <li class="chapter " data-level="1.2.1" data-path="Action.html">
+        <li class="chapter active" data-level="1.2.1" data-path="Action.html">
             
                 
                     <a href="./Action.html">
@@ -499,13 +499,71 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_14">
+                    
+                        <h1 id="action-class-reference">Action Class Reference</h1>
+<p>Action 负责网络请求的发起，设置请求的成功、失败和错误的状态及对应的回调方法</p>
+<p>初始化：</p>
+<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Action actionConfigHost:@&quot;maichong.08dream.com&quot; client:@&quot;easyIOS&quot; codeKey:@&quot;code&quot; rightCode:0 msgKey:@&quot;msg&quot;];
+ }
+</code></pre><p>===</p>
+<h2 id="tasks">Tasks</h2>
+<p>  action <code>property</code></p>
+<ul>
+<li><p>+Action:</p>
+</li>
+<li><p>– initWithCache:</p>
+</li>
+<li><p>– success:</p>
+</li>
+<li><p>– error:</p>
+</li>
+<li><p>– failed:</p>
+</li>
+<li><p>– Send:</p>
+</li>
+</ul>
+<p>===</p>
+<h2 id="properties">Properties</h2>
+<h3 id="action">action</h3>
+<pre><code>@property(nonatomic,strong)id&lt;ActionDelegate&gt; aDelegaete;
+</code></pre><p>===</p>
+<h2 id="class-methods">Class Methods</h2>
+<h3 id="scenemodel">SceneModel</h3>
+<pre><code>+ (id)Action;
+</code></pre><p>生成一个实例的Action对象</p>
+<h2 id="instance-methods">Instance Methods</h2>
+<h3 id="initwithcache">initWithCache:</h3>
+<pre><code>- (id)initWithCache;
+</code></pre><p>初始化对象，并且默认使用缓存</p>
+<h3 id="success">success:</h3>
+<pre><code>- (void)success:(Request *)msg;
+</code></pre><p>设置请求的状态为成功，并且触发对应的回调</p>
+<h3 id="error">error:</h3>
+<pre><code>- (void)error:(Request *)msg;
+</code></pre><p>设置请求的状态为失败，并且触发对应的回调</p>
+<h3 id="failed">failed:</h3>
+<pre><code>- (void)failed:(Request *)msg;
+</code></pre><p>设置请求的状态为失败，并且触发对应的回调</p>
+<h3 id="send">Send</h3>
+<pre><code>-(MKNetworkOperation*)Send:(Request *) msg;
+</code></pre><p>发送请求，会根据msg中配置的方式（GET或POST）和参数发起相应的请求操作，请求被加入请求队列中。</p>
 
-
+                    
+                    </section>
+                
+                
                 </div>
             </div>
         </div>
 
         
+        <a href="./SceneModel.html" class="navigation navigation-prev " aria-label="Previous page: SceneModel"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./Request.html" class="navigation navigation-next " aria-label="Next page: Request"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
