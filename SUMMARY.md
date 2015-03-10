@@ -1,5 +1,4 @@
-* [Welcome](Home.md)
-* [Home](Home)
+* [Home](Home.md)
 	* [Scene](Scene.md)(1.0)
 	* [SceneModel](SceneModel.md)(2.0)
 		* [Action](Action.md)(1.0)
